@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Kpable.Utilities;
+using System;
 
 public class SceneTransitioner : SingletonBehaviour<SceneTransitioner> {
 
@@ -28,6 +29,11 @@ public class SceneTransitioner : SingletonBehaviour<SceneTransitioner> {
     public void RestartScene()
     {
         TransitionToScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    internal void NextScene()
+    {
+        TransitionToScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     void FadeToLevel(int levelIndex)
