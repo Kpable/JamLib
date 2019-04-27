@@ -25,6 +25,11 @@ public class SceneTransitioner : SingletonBehaviour<SceneTransitioner> {
         FadeToLevel(sceneIndex);
     }
 
+    public void RestartScene()
+    {
+        TransitionToScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     void FadeToLevel(int levelIndex)
     {
         levelToLoad = levelIndex;
