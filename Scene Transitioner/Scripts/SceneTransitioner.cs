@@ -47,7 +47,7 @@ public class SceneTransitioner : SingletonBehaviour<SceneTransitioner> {
     void FadeToLevel(int levelIndex)
     {
         levelToLoad = levelIndex;
-        if (!animator)
+        if (animator != null)
         {
             animator.SetTrigger("FadeOut");
         }
@@ -56,7 +56,7 @@ public class SceneTransitioner : SingletonBehaviour<SceneTransitioner> {
 
     void FadeFromLevel()
     {
-        if (!animator)
+        if (animator != null)
         {
             animator.SetTrigger("FadeIn");
         }
