@@ -11,12 +11,20 @@ public class SceneTransitioner : SingletonBehaviour<SceneTransitioner> {
 
     private int levelToLoad;
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            TransitionToScene(0);
+        }
+    }
+
     public void TransitionToScene(string sceneName)
     {
         var scene = SceneManager.GetSceneByName(sceneName);
         var index = scene.buildIndex;
         Debug.Log("TransitionToScene: " + sceneName + ":" + index);
-        FadeToLevel(0);
+        FadeToLevel(index);
     }
 
     public void TransitionToScene(int sceneIndex)
@@ -39,12 +47,19 @@ public class SceneTransitioner : SingletonBehaviour<SceneTransitioner> {
     void FadeToLevel(int levelIndex)
     {
         levelToLoad = levelIndex;
-        animator.SetTrigger("FadeOut");
+        if (!animator)
+        {
+            animator.SetTrigger("FadeOut");
+        }
+
     }
 
     void FadeFromLevel()
     {
-        animator.SetTrigger("FadeIn");
+        if (!animator)
+        {
+            animator.SetTrigger("FadeIn");
+        }
     }
 
     void SceneLoaded(Scene scene, LoadSceneMode mode)
